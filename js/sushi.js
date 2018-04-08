@@ -1,5 +1,4 @@
 // models / data
-
 var items = new kendo.data.DataSource({
     schema: 
     { 
@@ -14,6 +13,8 @@ var items = new kendo.data.DataSource({
         } 
     }
 });
+
+
 
 var cart = kendo.observable({
     contents: [],
@@ -77,9 +78,13 @@ var cart = kendo.observable({
     }
 });
 
+
+
 var layoutModel = kendo.observable({
     cart: cart
 });
+
+
 
 var cartPreviewModel = kendo.observable({
     cart: cart,
@@ -110,6 +115,8 @@ var cartPreviewModel = kendo.observable({
     }
 });
 
+
+
 var indexModel = kendo.observable({
     items: items,
     cart: cart,
@@ -118,6 +125,8 @@ var indexModel = kendo.observable({
         cart.add(e.data);
     }
 });
+
+
 
 var detailModel = kendo.observable({
     imgUrl: function() {
@@ -160,12 +169,16 @@ var detailModel = kendo.observable({
     }
 });
 
+
+
 // Views and layouts
 var layout = new kendo.Layout("layout-template", { model: layoutModel });
 var cartPreview = new kendo.Layout("cart-preview-template", { model: cartPreviewModel });
 var index = new kendo.View("index-template", { model: indexModel });
 var checkout = new kendo.View("checkout-template", {model: cartPreviewModel });
 var detail = new kendo.View("detail-template", { model: detailModel });
+
+
 
 var sushi = new kendo.Router({
     init: function() {
@@ -174,7 +187,11 @@ var sushi = new kendo.Router({
     }
 });
 
+
+
 var viewingDetail = false;
+
+
 
 // Routing
 sushi.route("/", function() {
@@ -184,11 +201,15 @@ sushi.route("/", function() {
     layout.showIn("#pre-content", cartPreview);
 });
 
+
+
 sushi.route("/checkout", function() {
     viewingDetail = false;
     layout.showIn("#content", checkout);
     cartPreview.hide();
 });
+
+
 
 sushi.route("/menu/:id", function(itemID) {
     layout.showIn("#pre-content", cartPreview);
@@ -212,6 +233,8 @@ sushi.route("/menu/:id", function(itemID) {
 
     viewingDetail = true;
 });
+
+
 
 $(function() {
     sushi.start();

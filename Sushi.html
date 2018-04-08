@@ -15,9 +15,15 @@
 </head>
 <body>
     
-    
+        <!--OBEJMUJE CAŁE BODY RAZEM Z FOOTEREM-->
+        <!--UŻYTE W .JS DLA OBIEKTU kendo.Router-->
         <div id="application"></div>
 
+        <!--GŁÓWNY SZABLON - MIEJSCA NA TREŚĆ-->
+        <!--HEADER, MAIN-SECTION, FOOTER-->
+        <!--"Shopping Cart"-->
+        <!--"Thank you for your order"-->
+        <!--"Copyright"-->
         <script type="text/x-kendo-template" id="layout-template">
             <div id="wrapper">
                 <div id="header">
@@ -28,23 +34,31 @@
 
                 <p data-bind="visible: cart.cleared"> Thank you for your order!</p>
 
+                <!--MIEJSCE DLA PRODUKTÓW W KOSZYKU I ASORTYMENTU-->
                 <div id="main-section">
+                    <!--MIEJSCE DLA PRODUKTÓW DODANYCH DO KOSZYKA-->
                     <section id="pre-content"></section>
+                    <!--MIEJSCE DLA ASORTYMENTU-->
                     <section id="content"></section>
                 </div>
-
+                <!--FOOTER-->
                 <div id="footer">
                     <span id="copyright">Copyright &#169; 2011 - 2013 Telerik Inc. All rights reserved.</span>
-		    | <span>Learn more about Kendo SPA at <a href="http://docs.telerik.com/kendo-ui/getting-started/framework/spa/overview">docs.telerik.com/kendo-ui</a>.</span>
+		    |       <span>Learn more about Kendo SPA at <a href="http://docs.telerik.com/kendo-ui/getting-started/framework/spa/overview">docs.telerik.com/kendo-ui</a>.</span>
                 </div>
             </div>
         </script>
 
+
+        <!--"shopping cart"-->
+        <!--LISTA PRODUKTÓW W KOSZYKU-->
+        <!--<UL> BEZ <LI>-->
+        <!---->
         <script type="text/x-kendo-template" id="cart-preview-template">
             <div id="shop-info" data-bind="attr: { class: cartContentsClass }">
-
+                <!--MIEJSCE DLA LISTY PRODUKTÓW W KOSZYKU-->
                 <ul data-role="listview" data-bind="source: cart.contents" data-template="cart-item" id="shop-list"></ul>
-
+                <!--SUMA I GUZIKI "EMPTY CART" I "CHECKOUT"-->
                 <div id="shopping-cart">
                     <h3>your<br/>shopping cart</h3>
                     <p class="total-price" data-bind="html: totalPrice"></p>
@@ -53,10 +67,17 @@
             </div>
         </script>
 
+
+        <!--<UL>-->
+        <!--LISTA DODANYCH DO KOSZYKA PRODUKTÓW-->
         <script type="text/x-kendo-template" id="index-template">
             <ul data-role="listview" data-bind="source: items" data-template="item" id="main"></ul>
         </script>
 
+
+        <!--checkout-->
+        <!--NOWA PODSTRONA Z KOSZYKIEM -->
+        <!--TO NIE DLA MNIE TERAZ-->
         <script type="text/x-kendo-template" id="checkout-template">
 			<div id="checkout-top-image"></div>
 
@@ -80,11 +101,12 @@
 			<div id="checkout-bottom-image"></div>
         </script>
 
-        <script type="text/x-kendo-template" id="detail-template">
 
+        <!--SZCZEGÓŁY PRODUKTU-->
+        <!--NOWA PODSTRONA-->
+        <script type="text/x-kendo-template" id="detail-template">
 			<div id="details-top-image">
 			</div>
-
 			<div id="details">
                 <a data-bind="attr: {href: previousHref }" id="navigate-prev"></a><div
 				id="detail-info"><img class="main-image"
@@ -114,10 +136,12 @@
 						</dl>
 				</div><a data-bind="attr: { href: nextHref }" id="navigate-next"></a>
 			</div>
-
             <div id="details-bottom-image"></div>
         </script>
 
+
+        <!--CHECKOUT - PRODUKTY W KOSZYKU-->
+        <!--NOWA PODSTRONA-->
         <script type="text/x-kendo-template" id="large-cart-item">
             <tr>
                 <td> <div class="cart-image-wrapper"><img src="/images/200/#= item.image #" /></div> <span class="product-name" data-bind="text: item.name"></span></td>
@@ -126,23 +150,34 @@
             </tr>
         </script>
 
+
+        <!--KOSZYK - LISTA PRODUKTÓW W KOSZYKU-->
+        <!--<LI>-->
         <script type="text/x-kendo-template" id="cart-item">
             <li class="selected-products-list">
                 <a data-bind="click: removeFromCart" class="view-selected-items"><img
                     width="100" height="100"
-                    src="/images/200/#= item.image #"  /></a>
+                    src="/images/200/#= item.image #"  />
+                </a>
+                <!--PODPIS NA DOLE PRODUKTU"1x$19,00"-->
                 <span class="selected-image-price"><span data-bind="text: quantity"></span>x<span data-bind="text: itemPrice"></span></span>
             </li>
         </script>
 
+
+        <!--PRODUKTY Z ASORTYMENTU-->
         <script type="text/x-kendo-template" id="item">
             <li class="products">
+                <!-- <A> KLIKANIE PO NAJECHANIU-->
                 <a class="view-details" href="\#/menu/#: id #">
+                    <!--OBRAZEK-->
                     <img class="main-image" src="/images/200/#= image #"  alt="#: name#" title="#: name #" />
+                    <!--NAZWA PRODUKTU POD OBRAZKIEM-->
                     <strong data-bind="text: name"></strong>
+                    <!--CENA PRODUKTU-->
                     <span class="price"><span>$</span><span data-bind="text: price"></span></span>
                 </a>
-
+                <!--GUZIK "ADD TO CART"-->
                 <button class="add-to-cart" data-bind="click: addToCart">Add to cart</button>
             </li>
         </script>

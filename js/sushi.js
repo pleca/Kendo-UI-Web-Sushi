@@ -184,6 +184,8 @@ var detailModel = kendo.observable({
 
 
 // Views and layouts
+// LAYOUT I VIEW SĄ W DOKUMENTACJI W DZIALE "SPA - SINGLE PAGE APPS"
+// ... WIĘĆ MUSISZ TO PO SWOJEMU
 var layout = new kendo.Layout("layout-template", { model: layoutModel });
 var cartPreview = new kendo.Layout("cart-preview-template", { model: cartPreviewModel });
 var index = new kendo.View("index-template", { model: indexModel });

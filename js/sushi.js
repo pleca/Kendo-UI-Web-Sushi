@@ -1,4 +1,5 @@
 // models / data
+//ODBIERA DANE JSON Z PLIKU menu.json
 var items = new kendo.data.DataSource({
     schema: 
     { 
@@ -15,7 +16,14 @@ var items = new kendo.data.DataSource({
 });
 
 
-
+// KOSZYK
+// 6 FUNKCJI:
+//  - contentsCount     : ZWRACA LICZBĘ PRODUKTÓW W KOSZYKU PRZECHOWYWANĄ W TABLICY contents
+//  - add               : DODAJE LICZBĘ DO PRODUKTU
+//  - remove            : USUWA PRODUKT Z KOSZA
+//  - empty             : CZYŚCI KOSZYK
+//  - clear             : TO SAMO CO WYŻEJ + this.set("cleared", true);
+//  - total             : SUMA ZAPŁATY
 var cart = kendo.observable({
     contents: [],
     cleared: false,
@@ -26,9 +34,8 @@ var cart = kendo.observable({
 
     add: function(item) {
         var found = false;
-
         this.set("cleared", false);
-
+        //SPRAWDZA CZY PRODUKT JUŻ JEST W KOSZYKU
         for (var i = 0; i < this.contents.length; i ++) {
             var current = this.contents[i];
             if (current.item === item) {
@@ -37,7 +44,7 @@ var cart = kendo.observable({
                 break;
             }
         }
-
+        //JEŚLI PRODUKTU NIE MA JESZCZE W KOSZYKU
         if (!found) {
             this.contents.push({ item: item, quantity: 1 });
         }
@@ -79,13 +86,18 @@ var cart = kendo.observable({
 });
 
 
-
+// PODPINAM KOSZYK cart POD ZMIENNĄ KTÓRA PÓŻNIEJ JEST UŻYTA W kendo.Layout:
+//      var layout = new kendo.Layout("layout-template", { model: layoutModel });
 var layoutModel = kendo.observable({
     cart: cart
 });
 
 
-
+// PODPINAM KOSZYK cart POD OBIEKT...
+//  TU SĄ PUBLICZNE METODY KORZYSTAJĄCE Z DANYCH OBIEKTU CART (PIERWSZEGO)
+//  UŻYWANE NIŻEJ W LINIACH Z kendo.Layout I kendo.View:
+//      var cartPreview = new kendo.Layout("cart-preview-template", { model: cartPreviewModel });
+//      var checkout = new kendo.View("checkout-template", {model: cartPreviewModel });
 var cartPreviewModel = kendo.observable({
     cart: cart,
 
@@ -116,7 +128,7 @@ var cartPreviewModel = kendo.observable({
 });
 
 
-
+// PODPINAM KOSZYK cart POD OBIEKT KTÓRY MA METODĘ PUBLICZNĄ DODAJĄCĄ DO KOSZYKA...
 var indexModel = kendo.observable({
     items: items,
     cart: cart,

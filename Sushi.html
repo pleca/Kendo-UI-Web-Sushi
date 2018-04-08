@@ -71,6 +71,8 @@
         <!--<UL>-->
         <!--LISTA DODANYCH DO KOSZYKA PRODUKTÓW-->
         <script type="text/x-kendo-template" id="index-template">
+            <!--"data-bind=source: items" CZYLI BIERZE DANE ZE ZMIENNEJ items (KTÓRA JEST DATASOURCE JSON) ORAZ ...-->
+            <!-- ...ORAZ RENDERUJE TEMPLATE O NAZWIE WSKAZANEJ W data-template="item" -->
             <ul data-role="listview" data-bind="source: items" data-template="item" id="main"></ul>
         </script>
 

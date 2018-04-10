@@ -31,9 +31,10 @@ var cart = kendo.observable({
     contentsCount: function() {
         return this.get("contents").length;
     },
-
+    <!--[DEGUG]-3] TU MNIE WYSYŁA FUNKCJA ZMIENNEJ indexModel TEGO SKRYPTU-->
     add: function(item) {
         var found = false;
+        //$this->set ODWOŁANIE SIĘ DO METODY PRYWATNEJ TEGO OBIEKTU
         this.set("cleared", false);
         //SPRAWDZA CZY PRODUKT JUŻ JEST W KOSZYKU
         for (var i = 0; i < this.contents.length; i ++) {
@@ -101,6 +102,12 @@ var layoutModel = kendo.observable({
 var cartPreviewModel = kendo.observable({
     cart: cart,
 
+    <!--[DEGUG]-4] PRZY DODAWANIU PRODUKTU, NIE WIEM KTO WYWOŁAŁ TĘ FUNKCJĘ
+            - TA ZMIENNA OBIEKTU: cartPreviewModel JEST ZWIĄZANA (NA DOLE) Z
+            SZABLONEM-SKRYPTEM cart-preview-template W KTÓRYM JEST KOSZYK!!
+            - W TYM SZABLONIE ZEWNĘTRZNY DIV MA data-bind="attr: { class: cartContentsClass }">
+
+    -->
     cartContentsClass: function() {
         return this.cart.contentsCount() > 0 ? "active" : "empty";
     },
@@ -132,7 +139,7 @@ var cartPreviewModel = kendo.observable({
 var indexModel = kendo.observable({
     items: items,
     cart: cart,
-
+    <!--[DEGUG]-2] TU TRAFIAM OD RAZU PO DODANIU DO KOSZYKA Z ASORTYMENTU-->
     addToCart: function(e) {
         cart.add(e.data);
     }

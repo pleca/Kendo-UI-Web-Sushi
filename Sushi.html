@@ -19,7 +19,7 @@
         <!--UŻYTE W .JS DLA OBIEKTU kendo.Router-->
         <div id="application"></div>
 
-        <!--GŁÓWNY SZABLON - MIEJSCA NA TREŚĆ-->
+<!--GŁÓWNY SZABLON - MIEJSCA NA TREŚĆ-->
         <!--HEADER, MAIN-SECTION, FOOTER-->
         <!--"Shopping Cart"-->
         <!--"Thank you for your order"-->
@@ -49,6 +49,8 @@
             </div>
         </script>
 
+
+<!--KOSZYK <ul>-->
 <!--WAŻNE-->
 <!--PRZENIESIONE-->
         <!--"shopping cart"-->
@@ -68,14 +70,54 @@
             </div>
         </script>
 
+
+<!--KOSZYK-->
+        <!--WAŻNE-->
+        <!--PRZENIOSŁEM-->
+        <!--KOSZYK - LISTA PRODUKTÓW W KOSZYKU-->
+        <!--<LI>-->
+        <script type="text/x-kendo-template" id="cart-item">
+            <li class="selected-products-list">
+                <a data-bind="click: removeFromCart" class="view-selected-items"><img
+                        width="100" height="100"
+                        src="/images/200/#= item.image #"  />
+                </a>
+                <!--PODPIS NA DOLE PRODUKTU"1x$19,00"-->
+                <span class="selected-image-price"><span data-bind="text: quantity"></span>x<span data-bind="text: itemPrice"></span></span>
+            </li>
+        </script>
+
+
+<!--ASORTYMENT-->
 <!--WAŻNE-->
 <!--MAM NA SZTYWNO W HTML <UL> I PODPINAM POD NIEGO LISTVIEW W SKRYPCIE-->
         <!--<UL>-->
-        <!--ASORTYMENT-->
         <script type="text/x-kendo-template" id="index-template">
             <!--"data-bind=source: items" CZYLI BIERZE DANE ZE ZMIENNEJ items (KTÓRA JEST DATASOURCE JSON) ORAZ ...-->
             <!-- ...ORAZ RENDERUJE TEMPLATE O NAZWIE WSKAZANEJ W data-template="item" -->
             <ul data-role="listview" data-bind="source: items" data-template="item" id="main"></ul>
+        </script>
+
+
+<!--ASORTYMENT-->
+        <!--WAŻNE-->
+        <!--PRZENIOSŁEM-->
+        <!--PRODUKTY Z ASORTYMENTU-->
+        <script type="text/x-kendo-template" id="item">
+            <li class="products">
+                <!-- <A> KLIKANIE PO NAJECHANIU-->
+                <a class="view-details" href="\#/menu/#: id #">
+                    <!--OBRAZEK-->
+                    <img class="main-image" src="/images/200/#= image #"  alt="#: name#" title="#: name #" />
+                    <!--NAZWA PRODUKTU POD OBRAZKIEM-->
+                    <strong data-bind="text: name"></strong>
+                    <!--CENA PRODUKTU-->
+                    <span class="price"><span>$</span><span data-bind="text: price"></span></span>
+                </a>
+                <!--GUZIK "ADD TO CART"-->
+                <!--[DEGUG]-1] ODPALAM EVENT CLICK A WYŁĄPUJE GO FUNKCJA W sushi.js-->
+                <button class="add-to-cart" data-bind="click: addToCart">Add to cart</button>
+            </li>
         </script>
 
 
@@ -154,43 +196,6 @@
             </tr>
         </script>
 
-<!--WAŻNE-->
-<!--PRZENIOSŁEM-->
-        <!--KOSZYK - LISTA PRODUKTÓW W KOSZYKU-->
-        <!--<LI>-->
-        <script type="text/x-kendo-template" id="cart-item">
-            <li class="selected-products-list">
-                <a data-bind="click: removeFromCart" class="view-selected-items"><img
-                    width="100" height="100"
-                    src="/images/200/#= item.image #"  />
-                </a>
-                <!--PODPIS NA DOLE PRODUKTU"1x$19,00"-->
-                <span class="selected-image-price"><span data-bind="text: quantity"></span>x<span data-bind="text: itemPrice"></span></span>
-            </li>
-        </script>
-
-<!--WAŻNE-->
-<!--PRZENIOSŁEM-->
-        <!--PRODUKTY Z ASORTYMENTU-->
-        <script type="text/x-kendo-template" id="item">
-            <li class="products">
-                <!-- <A> KLIKANIE PO NAJECHANIU-->
-                <a class="view-details" href="\#/menu/#: id #">
-                    <!--OBRAZEK-->
-                    <img class="main-image" src="/images/200/#= image #"  alt="#: name#" title="#: name #" />
-                    <!--NAZWA PRODUKTU POD OBRAZKIEM-->
-                    <strong data-bind="text: name"></strong>
-                    <!--CENA PRODUKTU-->
-                    <span class="price"><span>$</span><span data-bind="text: price"></span></span>
-                </a>
-                <!--GUZIK "ADD TO CART"-->
-                <!--[DEGUG]-1] ODPALAM EVENT CLICK A WYŁĄPUJE GO FUNKCJA W sushi.js-->
-                <button class="add-to-cart" data-bind="click: addToCart">Add to cart</button>
-            </li>
-        </script>
-    
-
-    
     
 </body>
 </html>

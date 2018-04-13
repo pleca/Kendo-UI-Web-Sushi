@@ -219,6 +219,7 @@ sushi.route("/", function() {
     console.log("router root route")
     viewingDetail = false;
     layout.showIn("#content", index);
+    //TU WSKAZUJĘ BY POKAZAŁ SZABLON ID="cart-preview-template" WEWNĄTRZ #pre-content
     layout.showIn("#pre-content", cartPreview);
 });
 
